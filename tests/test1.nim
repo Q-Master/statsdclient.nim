@@ -1,5 +1,5 @@
 import std/[asyncdispatch, net, unittest]
-import statsdclient
+import simplestatsdclient
 
 suite "Syncronous":
   setup:

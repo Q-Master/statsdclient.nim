@@ -17,7 +17,7 @@ This library might be used either in sync or async mode.
 
 ### Sync
 ```nim
-import statsdclient
+import simplestatsdclient
 let sender = newStatsDClient('localhost', Port(8125))
 sender.counter('my.pretty.counter', 1)
 sender.gauge('my.gauge', 19.5)
@@ -27,7 +27,7 @@ sender.increment('my.gauge', 2)
 ### Async
 ```nim
 import std/[asyncdispatch]
-import statsdclient
+import simplestatsdclient
 let sender = newAsyncStatsDClient('localhost', Port(8125))
 proc main() {.async.} =
     await sender.counter('my.pretty.counter', 1)
