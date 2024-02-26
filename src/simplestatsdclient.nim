@@ -18,12 +18,16 @@ type
 
 proc newStatsDClient*(host: string, port: Port): StatsDClient =
   result.new
-  result.socket = newSocket(sockType = SOCK_DGRAM, protocol = IPPROTO_UDP, buffered = false)
+  result.socket = newSocket(AF_INET, SOCK_DGRAM, IPPROTO_UDP, buffered = false)
+  result.host = host
+  result.port = port
 
 
 proc newAsyncStatsDClient*(host: string, port: Port): AsyncStatsDClient = 
   result.new
-  result.socket = newAsyncSocket(sockType = SOCK_DGRAM, protocol = IPPROTO_UDP, buffered = false)
+  result.socket = newAsyncSocket(AF_INET, SOCK_DGRAM, IPPROTO_UDP, buffered = false)
+  result.host = host
+  result.port = port
 
 
 proc counter*(self: StatsDClient|AsyncStatsDClient, key: string, value: SomeInteger|SomeFloat) {.multisync.} =
